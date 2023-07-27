@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Enrolment Form</title>
+    <style>
+        body {
+            font-size: 24px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto 1fr;
+            grid-template-areas:
+                "nav nav"
+                "form enrol";
+            height: 100vh;
+            grid-gap: 10px;
+        }
+
+        #navbar {
+            color: white;
+            background: linear-gradient(blue, rgb(155, 165, 248));
+            grid-area: nav;
+            text-align: center;
+        }
+
+        #form {
+            background: linear-gradient(rgb(171, 255, 44),rgb(15, 166, 121));
+            border: 2px solid red;
+            grid-area: form;
+            display: flex;
+            /* align-items: center; */
+            justify-content: center;
+            /* background-color: aqua; */
+        }
+        .forms{
+            font-size: 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* height: 70vh; */
+            width: 90%;
+        }
+        .name,.email,.website,.gen,.skill,.img,.submit{
+            margin: 10px;
+            width: 80%;
+        }
+        .name,.email,.website,.img{
+            display: flex;
+            justify-content: space-between;
+        }
+        input[type="radio"],input[type="checkbox"]{
+            height: 20px;
+            width: 20px;
+        }
+        input[type="text"],input[type="email"]{
+            width: 70%;
+            height: 25px;
+            border-radius: 10px;
+        }
+        .submit{
+            display: flex;
+            justify-content: space-between;
+        }
+        input[type="button"],input[type="reset"]{
+            height: 35px;
+            background: linear-gradient(green,lightgreen);
+            border: none;
+            border-radius: 10px;
+            width: 48%;
+            font-size: 20px;
+        }
+        #enrol {
+            grid-area: enrol;
+            /* border: 2px solid rgb(128, 0, 96); */
+        }
+        .enroled{
+            overflow:auto;
+            background: linear-gradient(rgb(45, 197, 247),rgb(19, 86, 200));
+        }
+        #enrol{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            grid-template-rows: repeat(auto-fill,minmax(250px,1fr));
+        }
+        .profile p{
+            /* border: 2px solid red; */
+            margin: 0px;
+        }
+        #h{
+            text-align: center;
+            /* border: 2px solid red; */
+        }
+        .profile{
+            border-radius: 25px;
+            border: 2px solid rgb(228, 235, 49);
+            display: flex;
+            font-size: 20px;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+        }
+        .profile img{
+            height: 75px;
+            width: 75px;
+            margin-bottom: 10px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <h1>
+            Student enrolment
+        </h1>
+    </nav>
+    <div class="form" id="form">
+        <form action="" class="forms">
+            <h2>Enrolment Form</h2>
+            <div class="name">
+                <label for="name">Name:</label>
+                <input type="text" required id="name">
+            </div>
+            <div class="email">
+                <label for="email">E-mail:</label>
+                <input type="email" required id="email">
+            </div>
+            <div class="website">
+                <label for="website">Website:</label>
+                <input type="text" id="website"required>
+            </div>
+            <div class="img">
+                <label for="img">Image link:</label>
+                <input type="text" id="img" required>
+            </div>
+            <div class="gen">
+                <label for="gender" required> Gender:</label>
+                <label for="M" name="male">Male:</label>
+                <input type="radio" name="gender" id="M" value="Male">
+                <label for="F" name="female">Female:</label>
+                <input type="radio" name="gender" id="F" value="Female">
+            </div>
+            <div class="skill">
+                <label for="skill" required>Skills:</label>
+                <label for="java">Java</label>
+                <input type="checkbox"  name="java" id="java" value="Java">
+                <label for="html">Html</label>
+                <input type="checkbox" name="html" id="html" value="Html">
+                <label for="css">Css</label>
+                <input type="checkbox" name="css" id="css" value="Css">
+            </div>
+            <div class="submit">
+                <input type="button" value="Submit" onclick="sub()">
+                <input type="reset" value="Reset">
+           </div>
+        </form>
+    </div>
+    <div class="enroled">
+        <div id="h"><h2>Emroled Students</h2></div>
+        <div id="enrol">
+
+        </div>
+    </div>
+</body>
+<script>
+    function sub(){
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var web = document.getElementById("website").value;
+        var img = document.getElementById("img").value;
+        var gen = document.querySelector('input[name="gender"]:checked');
+        var b,J,h,Css =" ";
+        var j = document.querySelector('input[name="java"]:checked');
+        var H = document.querySelector('input[name="css"]:checked');
+        var css = document.querySelector('input[name="html"]:checked');
+        var sk="" ;
+        if(j != null){
+            sk = j.value;
+        }
+        if(H != null){
+            sk = sk+" "+H.value;
+        }
+        if(css != null){
+            sk = sk+" "+css.value;
+        }
+        if(gen != null){
+            b = gen.value;
+        }
+        document.getElementById("enrol").innerHTML += "<div class='profile'><img src="+img+" alt='profile-pic' class ='image'><p>"+name+"</p><p>"+email+"</p><p>"+web+"</p><p>"+b+"</p><p>"+sk+"</p></div>";
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        body{
+            background: radial-gradient(red,black);
+            color: whitesmoke;
+            background-attachment: fixed;
+        }
+        .main{
+            margin: auto;
+            width: fit-content;
+            min-height: 100vh;
+            max-height: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content:flex-start;
+            flex-direction: column;
+        }
+        .add-item{
+            border: 2px solid pink;
+            width: 40vw;
+            margin: 10px;
+            padding: 12px;
+        }
+        .text{
+            width: 98%;
+            height: 25px;
+            border-radius: 5px;
+            font-size: 1.15em;
+        }
+        .btn{
+            margin-top: 10px;
+            background-color: goldenrod;
+            border: 2px solid firebrick;
+            border-radius: 5px;
+            height: 35px;
+            color: white;
+            width: 49%;
+            font-size: 1.15em;
+        }
+        #list{
+            /* padding: 5px; */
+            border: 2px dotted goldenrod;
+            backdrop-filter: blur(2px);
+            min-width: 40vw;
+            max-width: fit-content;
+        }
+        .item{
+            margin: 10px;
+            font-size: 1.5em;
+            display: flex;
+            min-height: fit-content;
+            min-width: 97%;
+            max-width: fit-content;
+            justify-content: space-between;
+            border: 2px solid #00f6ff;
+            box-shadow:  0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .action{
+            display: flex;
+        }
+        .haha{
+            text-align: center;
+        }
+        input[type = "checkbox"]{
+            accent-color: rgb(85, 255, 0);
+            height: 25px;
+            width: 25px;
+        }
+        .task{
+            margin-top: 7px;
+        }
+    </style>
+    <script>
+        var i = 0;
+        var arr = [];
+        function add(){
+            var t1 = document.getElementById("task").value;
+            if( t1.length<1 || t1 ==" "){
+                alert("Can not add empty task.");
+            }
+            else{
+                let flag = 0;
+                for(let j = 0;j<=arr.length;j++){
+                    if (arr[j] == t1){
+                        flag = 1;
+                        break;
+                    }
+                }
+                if (flag == 1){
+                    alert("Task alredy exist try adding another task");
+                    document.getElementById("task").value = null;
+                }
+                else{
+                    arr[i] = t1;
+                    document.getElementById("list").innerHTML += `
+                    <div class="item" id=`+arr[i]+`>
+                        <div class="task">`
+                            +t1+`    
+                        </div>
+                        <div class='action' id="act">
+                            <input type="checkbox" fill="green">
+                        </div>
+                    </div>`;
+                    alert("task Added");
+                    document.getElementById("task").value = null;
+                    i = i +1;
+                    return i;
+                }
+            }
+        }
+        function remove(){
+            var b =  window.prompt("enter task you want to remove");
+            let flag =0;
+            for(let j =0;j<arr.length;j++){
+            if(b == arr[j]){
+                arr[j] = null;
+                flag = 1;
+                break;
+            }
+            }
+            if(flag == 0){
+                alert("task dose not exist");
+            }
+            else{
+                document.getElementById(b).style.display="none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="main">
+        <div class="add-item">
+            <input type="text" name="task" class="text" id="task">
+            <div class="button">
+                <input type="button" class="btn" value="ADD Task" onclick="add()">
+                <input type="button" class="btn" value="Delete Task" onclick="remove()">
+            </div>
+        </div>
+        <div id="list">
+            <h2 class="haha">To Do list.</h2>
+        </div>
+    </div>
+</body>
+</html>

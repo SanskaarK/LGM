@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(rgb(137, 137, 232),lightblue);
+
+        }
+        form{
+            border: none;
+            border-radius: 25px;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 90px 1fr; 
+            grid-gap: 20px;
+            width: 32vw;
+            margin-top: 50px;
+            background: linear-gradient(rgb(79, 36, 75),rgb(8, 65, 86));
+            height: 80vh;
+        }
+        .display{
+            /* border: 2px solid red; */
+            padding: 10px;
+            /* height: 50px; */
+        }
+        #out{
+            border-radius: 9px;
+            margin-top: 15px;
+            font-size: 34px;
+            width: 99%;
+            height: 70px;
+            background-color: rgb(241, 230, 230);
+            text-align: right;
+            border: none;
+        }
+        .act{
+            margin: 10px;
+            display: grid;
+            grid-gap: 15px;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto-fill;
+            grid-template-areas: 
+            "eq eq cl cl"
+            "num7 num8 num9 sub"
+            "num4 num5 num6 mul"
+            "num1 num2 num3 sum"
+            "num0 dec div sum";
+        }
+        #num0{
+            grid-area: num0;
+        }
+        #dec{
+            grid-area: dec;
+        }
+        #sum{
+            grid-area: sum;
+        }
+        #equal{
+            grid-area: cl;
+        }
+        #clear{
+            grid-area: eq;
+        }
+        #num7{
+            grid-area: num7;
+        }
+        #num8{
+            grid-area: num8;
+        }
+        #num9{
+            grid-area: num9;
+        }
+        #num6{
+            grid-area: num6;
+        }
+        #num5{
+            grid-area: num5;
+        }
+        #num4{
+            grid-area: num4;
+        }
+        #num3{
+            grid-area: num3;
+        }
+        #num2{
+            grid-area: num2;
+        }
+        #num1{
+            grid-area: num1;
+        }
+        #sub{
+            grid-area: sub;
+        }
+        #mul{
+            grid-area: mul;
+        }
+        input{
+            font-size: 24px;
+        }
+        input[type="button"],input[type="reset"]{
+            border-radius: 10px;
+            font-weight: bold;
+            border: 2px solid gray;
+        }
+        #clear,#equal, #div,#sum,#sub,#mul{
+            background-color: rgb(213, 157, 231);
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <div class="display">
+            <input type="text" name="text" id="out" readonly>
+        </div>
+        <div class="act">
+            <input type="button" id="equal" onclick="cal()" value="=">
+            <input type="button" id="num7" onclick="add(7)" value="7">
+            <input type="button" id="num8" onclick="add(8)" value="8">
+            <input type="button" id="num9" onclick="add(9)" value="9">
+            <input type="button" id="num6" onclick="add(6)" value="6">
+            <input type="button" id="num5" onclick="add(5)" value="5">
+            <input type="button" id="num4"onclick="add(4)" value="4">
+            <input type="button" id="num3" onclick="add(3)" value="3">
+            <input type="button" id="num2" onclick="add(2)" value="2">
+            <input type="button" id="num1" onclick="add(1)" value="1">
+            <input type="button" id="div" onclick="add('/')" value="/">
+            <input type="button" id="mul" onclick="add('*')" value="X">
+            <input type="button" id="sub" onclick="add('-')" value="-">
+            <input type="button" id="sum" onclick="add('+')" value="+">
+            <input type="button" id="num0" onclick="add(0)" value="0">
+            <input type="button" id="dec" onclick="add('.')" value=".">
+            <input type="reset"  id="clear" value="C">
+        </div>
+    </form>
+</body>
+<script>
+    function add(x){
+        document.getElementById("out").value += x; 
+    }
+    function cal(){
+        var output = document.getElementById("out").value;
+        var result = eval(output);
+        document.getElementById("out").value = result;
+        document.getElementById("out").value = result;
+    }
+</script>
+</html>
